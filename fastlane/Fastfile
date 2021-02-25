@@ -253,6 +253,18 @@ platform :ios do
     tag(prefix: tag_prefix, build_number: build)
   end
 
+  desc "Updates version, builds, and pushes experimental build to TestFlight. Only releases to internal testers."
+  lane :push_usertesting do |options|
+    tag_prefix = "alphas"
+    build = options[:build] || get_latest_build_number(prefix: tag_prefix) + 1
+    push(
+      product_name: "User Testing",
+      app_identifier: "org.wikimedia.wikipedia.usertesting",
+      build: build
+    )
+    # tag(prefix: tag_prefix, build_number: build)
+  end
+
   lane :get_latest_tag_with_prefix do |options|
     prefix = options[:prefix] || "betas/"
     `git tag -l #{prefix}* --sort=-creatordate | head -n 1`
