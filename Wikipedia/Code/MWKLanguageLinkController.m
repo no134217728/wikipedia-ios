@@ -157,6 +157,10 @@ static NSString *const WMFPreviousLanguagesKey = @"WMFPreviousSelectedLanguagesK
 #pragma mark - Reading/Saving Preferred Language Codes
 
 - (NSArray<NSString *> *)readSavedPreferredLanguageCodes {
+    return [self readSavedPreferredLanguageCodesInManagedObjectContext:self.moc];
+}
+    
+- (NSArray<NSString *> *)readSavedPreferredLanguageCodesInManagedObjectContext:(NSManagedObjectContext *)moc {
     __block NSArray<NSString *> *preferredLanguages = nil;
     [self.moc performBlockAndWait:^{
         preferredLanguages = [self.moc wmf_arrayValueForKey:WMFPreviousLanguagesKey] ?: @[];
@@ -182,16 +186,24 @@ static NSString *const WMFPreviousLanguagesKey = @"WMFPreviousSelectedLanguagesK
     }];
 }
 
-- (void)savePreferredLanguageCodes:(NSArray<NSString *> *)languageCodes changeType:(WMFPreferredLanguagesChangeType)changeType changedLanguage:(MWKLanguageLink *)changedLanguage {
+- (void)savePreferredLanguageCodes:(NSArray<NSString *> *)languageCodes changeType:(WMFPreferredLanguagesChangeType)changeType changedLanguage:(nullable MWKLanguageLink *)changedLanguage {
+    [self savePreferredLanguageCodes:languageCodes changeType:changeType changedLanguage:changedLanguage inManagedObjectContext:self.moc];
+}
+    
+- (void)savePreferredLanguageCodes:(NSArray<NSString *> *)languageCodes changeType:(WMFPreferredLanguagesChangeType)changeType changedLanguage:(nullable MWKLanguageLink *)changedLanguage inManagedObjectContext:(NSManagedObjectContext *)moc {
+
     NSString *previousAppContentLanguageCode = self.appLanguage.contentLanguageCode;
     [self willChangeValueForKey:WMF_SAFE_KEYPATH(self, allLanguages)];
-    [self.moc performBlockAndWait:^{
-        [self.moc wmf_setValue:languageCodes forKey:WMFPreviousLanguagesKey];
+    [moc performBlockAndWait:^{
+        [moc wmf_setValue:languageCodes forKey:WMFPreviousLanguagesKey];
         NSError *preferredLanguageCodeSaveError = nil;
-        if (![self.moc save:&preferredLanguageCodeSaveError]) {
+        if (![moc save:&preferredLanguageCodeSaveError]) {
             DDLogError(@"Error saving preferred languages: %@", preferredLanguageCodeSaveError);
         }
     }];
+    
+    if (changeType == 0 && !changedLanguage) { return; } // No change type/language also means don't send notifications. Used in migration to langauge variants.
+    
     [self didChangeValueForKey:WMF_SAFE_KEYPATH(self, allLanguages)];
     NSDictionary *userInfo = @{WMFPreferredLanguagesChangeTypeKey: @(changeType), WMFPreferredLanguagesLastChangedLanguageKey: changedLanguage};
     [[NSNotificationCenter defaultCenter] postNotificationName:WMFPreferredLanguagesDidChangeNotification object:self userInfo:userInfo];
@@ -220,6 +232,26 @@ static NSString *const WMFPreviousLanguagesKey = @"WMFPreviousSelectedLanguagesK
 + (void)migratePreferredLanguagesToManagedObjectContext:(NSManagedObjectContext *)moc {
     NSArray *preferredLanguages = [[NSUserDefaults standardUserDefaults] arrayForKey:WMFPreviousLanguagesKey];
     [moc wmf_setValue:preferredLanguages forKey:WMFPreviousLanguagesKey];
+}
+
+- (void)migratePreferredLanguagesToLanguageVariants:(NSDictionary<NSString *, NSString *> *)languageMapping  inManagedObjectContext:(NSManagedObjectContext *)moc {
+    NSArray<NSString *> *preferredLanguageCodes = [[self readSavedPreferredLanguageCodesInManagedObjectContext:moc] copy];
+    NSMutableArray<NSString *> *updatedLanguageCodes = [preferredLanguageCodes mutableCopy];
+    BOOL languageCodesChanged = NO;
+    NSInteger currentIndex = 0;
+    for (NSString *languageCode in preferredLanguageCodes) {
+        NSString *migratedLanguageCode = languageMapping[languageCode];
+        if (migratedLanguageCode) {
+            [updatedLanguageCodes replaceObjectAtIndex:currentIndex withObject:languageMapping[languageCode]];
+            languageCodesChanged = YES;
+        }
+        currentIndex++;
+    }
+    
+    if (languageCodesChanged) {
+        // TODO: Need to figure out / add the correct changeType/changedLanguage or possibly add a way to not send the notification or ignore it where received
+        [self savePreferredLanguageCodes:updatedLanguageCodes changeType:0 changedLanguage:nil inManagedObjectContext:moc];
+    }
 }
 
 @end

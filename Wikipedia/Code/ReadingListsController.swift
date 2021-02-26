@@ -844,3 +844,116 @@ extension ReadingListsController: BackgroundFetcher {
         }
     }
 }
+
+extension ReadingListsController {
+    
+    func migrateWikipediaEntitiesToLanguageVariants(languageMapping: [String:String], in moc: NSManagedObjectContext) {
+        for (languageCode, languageVariantCode) in languageMapping {
+            
+            guard let siteURLString = NSURL.wmf_URL(withDefaultSiteAndlanguage: languageCode)?.wmf_databaseKey else {
+                assertionFailure("Could not create URL from language code: '\(languageCode)'")
+                continue
+            }
+            
+            do {
+                // Update ContentGroups
+                let contentGroupFetchRequest: NSFetchRequest<WMFContentGroup> = WMFContentGroup.fetchRequest()
+                contentGroupFetchRequest.predicate = NSPredicate(format: "siteURLString == %@", siteURLString)
+                let groups = try moc.fetch(contentGroupFetchRequest)
+                for group in groups {
+                    group.variant = languageVariantCode
+                }
+                
+                // Update Articles and Gather Keys
+                var articleKeys: Set<String> = []
+                let articleFetchRequest: NSFetchRequest<WMFArticle> = WMFArticle.fetchRequest()
+                articleFetchRequest.predicate = NSPredicate(format: "key BEGINSWITH %@", siteURLString)
+                let articles = try moc.fetch(articleFetchRequest)
+                for article in articles {
+                    article.variant = languageVariantCode
+                    if let key = article.key {
+                        articleKeys.insert(key)
+                    }
+                }
+
+                // Update Reading List Entries
+                let entryFetchRequest: NSFetchRequest<ReadingListEntry> = ReadingListEntry.fetchRequest()
+                entryFetchRequest.predicate = NSPredicate(format: "articleKey IN %@", articleKeys)
+                let entries = try moc.fetch(entryFetchRequest)
+                for entry in entries {
+                    entry.variant = languageVariantCode
+                }
+            } catch let error {
+                DDLogError("Error migrating articles to variant '\(languageVariantCode)': \(error)")
+            }
+
+        }
+    }
+    
+    func migrateArticlesAndEntriesToLanguageVariants(with variantToArticleKeyMapping: [String:Set<String>], languageToMostRecentVariant: [String:String], migratedLanguageCodes: [String], in moc: NSManagedObjectContext) {
+        
+        let articleFetchRequest: NSFetchRequest<WMFArticle> = WMFArticle.fetchRequest()
+        if let articles = try? moc.fetch(articleFetchRequest) {
+            print(articles.map { $0.key ?? "nil" })
+        }
+
+                
+        // First fetch all saved articles where variant is known, set those values
+        // Only saved articles should have reading list entries, and all saved articles
+        // with a variant should have the variant set.
+        // Therefore, this should update all reading list entries that should have a variant
+        for (variant, articleKeys) in variantToArticleKeyMapping {
+            guard articleKeys.count > 0 else { continue }
+            do {
+                let articleFetchRequest: NSFetchRequest<WMFArticle> = WMFArticle.fetchRequest()
+                articleFetchRequest.predicate = NSPredicate(format: "key IN %@", articleKeys)
+                let articles = try moc.fetch(articleFetchRequest)
+                for article in articles {
+                    article.variant = variant
+                }
+                
+                let entryFetchRequest: NSFetchRequest<ReadingListEntry> = ReadingListEntry.fetchRequest()
+                entryFetchRequest.predicate = NSPredicate(format: "articleKey IN %@", articleKeys)
+                let entries = try moc.fetch(entryFetchRequest)
+                for entry in entries {
+                    entry.variant = variant
+                }
+            } catch let error {
+                DDLogError("Error migrating articles to variant '\(variant)': \(error)")
+            }
+        }
+        
+        // Then fetch all articles that are not saved and are from the sites of languages being migrated
+        // Use the most recent saved variant if present, or the best langauge guess if not.
+        for languageCode in migratedLanguageCodes {
+            let siteURL = NSURL.wmf_URL(withDefaultSiteAndlanguage: languageCode)
+            guard let siteDatabaseKey = siteURL?.wmf_databaseKey else {
+                continue
+            }
+            
+            guard let variant = languageToMostRecentVariant[languageCode] ?? NSLocale.wmf_bestLanguageVariantCodeForLanguageCode(languageCode) else {
+                continue
+            }
+            do {
+                let articleFetchRequest: NSFetchRequest<WMFArticle> = WMFArticle.fetchRequest()
+                articleFetchRequest.predicate = NSPredicate(format: "savedDate == NIL && key BEGINSWITH %@", siteDatabaseKey)
+                let articles = try moc.fetch(articleFetchRequest)
+                for article in articles {
+                    assert(article.variant == nil, "Article already assigned a variant during migration")
+                    article.variant = variant
+                }
+            } catch let error {
+                DDLogError("Error migrating articles to variant for language '\(languageCode)': \(error)")
+            }
+        }
+        
+        if moc.hasChanges {
+            do {
+                try moc.save()
+            } catch let error {
+                DDLogError("Error saving articles and readling list entry variant migrations: \(error)")
+            }
+        }
+    }
+    
+}
