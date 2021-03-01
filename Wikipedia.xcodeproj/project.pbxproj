@@ -571,6 +571,9 @@
 		67DDD188250C1A27006C0F93 /* ThreeLineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2090EE2500247100849774 /* ThreeLineHeaderView.swift */; };
 		67DDD189250C1A27006C0F93 /* ThreeLineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2090EE2500247100849774 /* ThreeLineHeaderView.swift */; };
 		67DDD18A250C1A28006C0F93 /* ThreeLineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2090EE2500247100849774 /* ThreeLineHeaderView.swift */; };
+		67DFE82F25ED72480084AB54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D801C8511EB8E131001FA294 /* InfoPlist.strings */; };
+		67DFE83025ED72480084AB54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D801C8511EB8E131001FA294 /* InfoPlist.strings */; };
+		67DFE83B25ED724A0084AB54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D801C8511EB8E131001FA294 /* InfoPlist.strings */; };
 		67E069062238A396008550AC /* FindAndReplaceKeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E069052238A396008550AC /* FindAndReplaceKeyboardBar.swift */; };
 		67E069082238A5A6008550AC /* WMFFindAndReplaceKeyboardBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67E069072238A5A5008550AC /* WMFFindAndReplaceKeyboardBar.xib */; };
 		67E0690A22399D1C008550AC /* ReadingThemesControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B03F31CE0FB7700009083 /* ReadingThemesControlsViewController.swift */; };
@@ -9880,6 +9883,7 @@
 				D8A42BEC1E815A9C00D8E281 /* WMFAccountCreationViewController.storyboard in Resources */,
 				6782DC00234537D0003FA21B /* DiffHeaderTitleView.xib in Resources */,
 				7A9F06212266432200856321 /* InsertMediaSettingsTextTableViewCell.xib in Resources */,
+				67DFE83B25ED724A0084AB54 /* InfoPlist.strings in Resources */,
 				7AF4B71E215D6EF400F582E0 /* ReadMoreAboutRevertedEditViewController.xib in Resources */,
 				D8A42BED1E815A9C00D8E281 /* NotificationBackgroundSuccessIcon.png in Resources */,
 				7AE1FE3921B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */,
@@ -10004,6 +10008,7 @@
 				D8CE26731E698E2400DAE2E0 /* WMFAccountCreationViewController.storyboard in Resources */,
 				6782DBFA234537D0003FA21B /* DiffHeaderTitleView.xib in Resources */,
 				7A9F061F2266432200856321 /* InsertMediaSettingsTextTableViewCell.xib in Resources */,
+				67DFE83025ED72480084AB54 /* InfoPlist.strings in Resources */,
 				7AF4B71C215D6EF400F582E0 /* ReadMoreAboutRevertedEditViewController.xib in Resources */,
 				D8CE26741E698E2400DAE2E0 /* NotificationBackgroundSuccessIcon.png in Resources */,
 				7AE1FE3721B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */,
@@ -10128,6 +10133,7 @@
 				D8EC3F731E9BDA35006712EB /* WMFAccountCreationViewController.storyboard in Resources */,
 				6782DBFD234537D0003FA21B /* DiffHeaderTitleView.xib in Resources */,
 				7A9F06202266432200856321 /* InsertMediaSettingsTextTableViewCell.xib in Resources */,
+				67DFE82F25ED72480084AB54 /* InfoPlist.strings in Resources */,
 				7AF4B71D215D6EF400F582E0 /* ReadMoreAboutRevertedEditViewController.xib in Resources */,
 				D8EC3F741E9BDA35006712EB /* NotificationBackgroundSuccessIcon.png in Resources */,
 				7AE1FE3821B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */,
