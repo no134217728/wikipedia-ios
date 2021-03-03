@@ -80,7 +80,6 @@ typedef NS_OPTIONS(NSUInteger, RemoteConfigOption) {
 @property (readonly, strong, nonatomic) MWKSavedPageList *savedPageList;
 @property (readonly, strong, nonatomic) MWKRecentSearchList *recentSearchList;
 @property (readonly, strong, nonatomic) WMFReadingListsController *readingListsController;
-@property (readonly, strong, nonatomic) WikidataFetcher *wikidataDescriptionEditingController;
 @property (readonly, strong, nonatomic) RemoteNotificationsController *remoteNotificationsController;
 @property (readonly, strong, nonatomic) WMFArticleSummaryController *articleSummaryController;
 @property (readonly, strong, nonatomic) MWKLanguageLinkController *languageLinkController;

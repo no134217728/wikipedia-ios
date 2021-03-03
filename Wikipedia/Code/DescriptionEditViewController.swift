@@ -29,6 +29,8 @@ import WMF
     @objc var editFunnel: EditFunnel?
     @objc var editFunnelSource: EditFunnelSource = .unknown
     
+    private var articleDescriptionController: ArticleDescriptionControlling!
+    
     // These would be better as let's and a required initializer but it's not an opportune time to ditch the storyboard
     // Convert these to non-force unwrapped if there's some way to ditch the storyboard or provide an initializer with the storyboard
     var article: WMFArticle!
@@ -37,7 +39,7 @@ import WMF
     var descriptionSource: ArticleDescriptionSource!
     var isAddingNewTitleDescription: Bool!
     var dataStore: MWKDataStore!
-    static func with(articleURL: URL, wikidataID: String, article: WMFArticle, descriptionSource: ArticleDescriptionSource, dataStore: MWKDataStore, theme: Theme) -> DescriptionEditViewController {
+    static func with(articleURL: URL, wikidataID: String, article: WMFArticle, descriptionSource: ArticleDescriptionSource, dataStore: MWKDataStore, theme: Theme, articleDescriptionController: ArticleDescriptionControlling) -> DescriptionEditViewController {
         let vc = wmf_initialViewControllerFromClassStoryboard()!
         vc.articleURL = articleURL
         vc.article = article
@@ -45,6 +47,7 @@ import WMF
         vc.descriptionSource = descriptionSource
         vc.isAddingNewTitleDescription = descriptionSource == .none
         vc.dataStore = dataStore
+        vc.articleDescriptionController = articleDescriptionController
         return vc
     }
     
@@ -210,12 +213,6 @@ import WMF
     private func save() {
         enableProgressiveButton(false)
         wmf_hideKeyboard()
-        
-        guard let language = articleURL.wmf_language else {
-            enableProgressiveButton(true)
-            assertionFailure("Expected article, datastore or article url not found")
-            return
-        }
 
         guard
             let descriptionToSave = descriptionTextView.normalizedWhitespaceText(),
@@ -227,23 +224,23 @@ import WMF
                 return
         }
         
-        dataStore.wikidataDescriptionEditingController.publish(newWikidataDescription: descriptionToSave, from: descriptionSource, forWikidataID: wikidataID, language: language) { error in
+        articleDescriptionController.publishDescription(descriptionToSave) { (result) in
             DispatchQueue.main.async {
                 let presentingVC = self.presentingViewController
                 self.enableProgressiveButton(true)
-                if let error = error {
-                    let apiErrorCode = (error as? WikidataAPIResult.APIError)?.code
-                    let errorText = apiErrorCode ?? "\((error as NSError).domain)-\((error as NSError).code)"
-                    self.editFunnel?.logTitleDescriptionSaveError(source: self.editFunnelSource, isAddingNewTitleDescription: self.isAddingNewTitleDescription, language: self.articleURL.wmf_language, errorText: errorText)
-                    WMFAlertManager.sharedInstance.showErrorAlert(error as NSError, sticky: true, dismissPreviousAlerts: true, tapCallBack: nil)
-                } else {
+                switch result {
+                case .success:
                     self.editFunnel?.logTitleDescriptionSaved(source: self.editFunnelSource, isAddingNewTitleDescription: self.isAddingNewTitleDescription, language: self.articleURL.wmf_language)
                     self.delegate?.descriptionEditViewControllerEditSucceeded(self)
                     self.dismiss(animated: true) {
                         presentingVC?.wmf_showDescriptionPublishedPanelViewController(theme: self.theme)
                         NotificationCenter.default.post(name: DescriptionEditViewController.didPublishNotification, object: nil)
                     }
-                    return
+                case .failure(let error):
+                    let apiErrorCode = (error as? WikidataAPIResult.APIError)?.code
+                    let errorText = apiErrorCode ?? "\((error as NSError).domain)-\((error as NSError).code)"
+                    self.editFunnel?.logTitleDescriptionSaveError(source: self.editFunnelSource, isAddingNewTitleDescription: self.isAddingNewTitleDescription, language: self.articleURL.wmf_language, errorText: errorText)
+                    WMFAlertManager.sharedInstance.showErrorAlert(error as NSError, sticky: true, dismissPreviousAlerts: true, tapCallBack: nil)
                 }
             }
         }

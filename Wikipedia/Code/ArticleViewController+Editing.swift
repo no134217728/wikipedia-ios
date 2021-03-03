@@ -47,7 +47,16 @@ extension ArticleViewController {
             return
         }
         editFunnel.logTitleDescriptionEditingStart(from: funnelSource, language: articleLanguage)
-        let editVC = DescriptionEditViewController.with(articleURL: articleURL, wikidataID: wikidataID, article: article, descriptionSource: descriptionSource, dataStore: dataStore, theme: theme)
+        
+        //todo: move into Configuration.swift? in isWikipediaHost area...isENWikipediaHost?
+        let maybeDescriptionController: ArticleDescriptionControlling? = (articleURL.wmf_language == "en" || articleURL.wmf_language == "test") ? ShortDescriptionController(articleURL: articleURL, currentDescription: nil) : WikidataDescriptionController(article: article)
+        
+        guard let descriptionController = maybeDescriptionController else {
+            showGenericError()
+            return
+        }
+        
+        let editVC = DescriptionEditViewController.with(articleURL: articleURL, wikidataID: wikidataID, article: article, descriptionSource: descriptionSource, dataStore: dataStore, theme: theme, articleDescriptionController: descriptionController)
         editVC.delegate = self
         editVC.editFunnel = editFunnel
         editVC.editFunnelSource = funnelSource
