@@ -84,8 +84,6 @@ private extension ShortDescriptionController {
     
     func uploadNewDescriptionToWikitext(_ wikitext: String, baseRevisionID: Int, newDescription: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
-        //todo: move sectionUploader calls to private methods
-        //improve toSection: call (maybe should say sectionID or something, or prependToSection("\(sectionID)")
         do {
             guard try wikitext.containsShortDescription() else {
                 
@@ -102,7 +100,7 @@ private extension ShortDescriptionController {
     
     func prependNewDescriptionToWikitextAndUpload(_ wikitext: String, baseRevisionID: Int, newDescription: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
-        let newTemplateToPrepend = "{{Short description|\(newDescription)}}"
+        let newTemplateToPrepend = "{{Short description|\(newDescription)}}\n"
         
         sectionUploader.prepend(toSectionID: "\(sectionID)", text: newTemplateToPrepend, forArticleURL: articleURL, isMinorEdit: true, baseRevID: baseRevisionID as NSNumber, completion: { (result, error) in
             

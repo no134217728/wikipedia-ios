@@ -116,7 +116,15 @@ extension ArticleViewController: ShortDescriptionControllerDelegate {
     func currentDescription(completion: @escaping (String?) -> Void) {
         
         let javascript = """
-            document.getElementById('pcs-edit-section-title-description').innerText;
+            function extractTitleDescription() {
+                var editTitleDescriptionElement = document.getElementById('pcs-edit-section-title-description');
+                if (editTitleDescriptionElement) {
+                    return editTitleDescriptionElement.innerText;
+                }
+
+                return null;
+            }
+            extractTitleDescription();
         """
         
         webView.evaluateJavaScript(javascript) { (result, error) in
