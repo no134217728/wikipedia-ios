@@ -6,14 +6,23 @@ enum ShortDescriptionControllerError: Error {
     case failureConstructingRegexExpression
 }
 
+protocol ShortDescriptionControllerDelegate: class {
+    func currentDescription(completion: @escaping (String?) -> Void)
+}
+
 class ShortDescriptionController: ArticleDescriptionControlling {
     
     private let sectionFetcher: SectionFetcher
     private let sectionUploader: WikiTextSectionUploader
     
     private let articleURL: URL
-    private let sectionID: Int = 0 //{{Short description}} template should always be in the first section.
-    let currentDescription: String?
+    let article: WMFArticle
+    let articleLanguage: String
+    
+    private let sectionID: Int = 0 //{{Short description}} template should always be in the first section. todo: confirm this
+    
+    let descriptionSource: ArticleDescriptionSource
+    private weak var delegate: ShortDescriptionControllerDelegate?
     
     fileprivate static let templateRegex = "(\\{\\{\\s*[sS]hort description\\|(?:1=)?)([^}|]+)([^}]*\\}\\})"
     
@@ -23,13 +32,19 @@ class ShortDescriptionController: ArticleDescriptionControlling {
     /// - Parameters:
     ///   - sectionFetcher: section fetcher that fetches the first section of wikitext. Injectable for unit tests.
     ///   - sectionUploader: section uploader that uploads the new section wikitext. Injectable for unit tests.
-    ///   - articleURL: URL of article that we want to updates
-    ///   - currentDescription: Current article description for pre-populating the native update screen textfield. Since we likely already have this (i.e. coming from article content), this saves us a loading step of fetching wikitext and parsing short description upon load of the native update screen.
-    init(sectionFetcher: SectionFetcher = SectionFetcher(), sectionUploader: WikiTextSectionUploader = WikiTextSectionUploader(), articleURL: URL, currentDescription: String?) {
+    ///   - article: WMFArticle from ArticleViewController
+    ///   - articleURL: URL of article that we want to update (from ArticleViewController)
+    ///   - articleLanguage: Language of article that we want to update (from ArticleViewController)
+    ///   - descriptionSource: ArticleDescriptionSource determined via .edit action across ArticleViewController js bridge
+    ///   - delegate: Delegate that can extract the title description from the article content
+    init(sectionFetcher: SectionFetcher = SectionFetcher(), sectionUploader: WikiTextSectionUploader = WikiTextSectionUploader(), article: WMFArticle, articleLanguage: String, articleURL: URL, descriptionSource: ArticleDescriptionSource, delegate: ShortDescriptionControllerDelegate) {
         self.sectionFetcher = sectionFetcher
         self.sectionUploader = sectionUploader
+        self.article = article
         self.articleURL = articleURL
-        self.currentDescription = currentDescription
+        self.articleLanguage = articleLanguage
+        self.descriptionSource = descriptionSource
+        self.delegate = delegate
     }
     
     /// Publishes a new article description to article wikitext. Detects the existence of the {{Short description}} template in the first section and replaces the text within or prepends the section with the new template.
@@ -56,6 +71,10 @@ class ShortDescriptionController: ArticleDescriptionControlling {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func currentDescription(completion: @escaping (String?) -> Void) {
+        delegate?.currentDescription(completion: completion)
     }
 }
 

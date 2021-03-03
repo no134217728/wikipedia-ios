@@ -80,7 +80,7 @@
     }
     
     if (baseRevID) {
-        params[@"baserevid"] = baseRevID;
+        params[@"baserevid"] = [NSString stringWithFormat:@"%@", baseRevID];
     }
     
     [self updateWithArticleURL:articleURL parameters:params captchaWord:nil completion:completion];
@@ -131,7 +131,7 @@
     }
     
     if (baseRevID) {
-        params[@"baserevid"] = baseRevID;
+        params[@"baserevid"] = [NSString stringWithFormat:@"%@", baseRevID];
     }
     
     [self updateWithArticleURL:articleURL parameters:params captchaWord:captchaWord completion:completion];

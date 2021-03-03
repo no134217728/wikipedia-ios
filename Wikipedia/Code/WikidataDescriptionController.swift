@@ -5,30 +5,32 @@ class WikidataDescriptionController: ArticleDescriptionControlling {
 
     private let fetcher: WikidataFetcher
     private let wikidataDescription: String?
-    private let language: String
     private let wikiDataID: String
+    let article: WMFArticle
+    let articleLanguage: String
+    let descriptionSource: ArticleDescriptionSource
     
-    init?(article: WMFArticle, fetcher: WikidataFetcher = WikidataFetcher()) {
+    init?(article: WMFArticle, articleLanguage: String, descriptionSource: ArticleDescriptionSource, fetcher: WikidataFetcher = WikidataFetcher()) {
         self.fetcher = fetcher
         self.wikidataDescription = article.wikidataDescription
+        self.article = article
+        self.articleLanguage = articleLanguage
+        self.descriptionSource = descriptionSource
         
-        guard let wikiDataID = article.wikidataID,
-              let language = article.url?.wmf_language else {
+        guard let wikiDataID = article.wikidataID else {
             return nil
         }
         
         self.wikiDataID = wikiDataID
-        self.language = language
     }
     
-    var currentDescription: String? {
-        return wikidataDescription
+    func currentDescription(completion: @escaping (String?) -> Void) {
+        completion(wikidataDescription)
     }
     
     func publishDescription(_ description: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
-        //todo: no need to pass in .local anymore
-        fetcher.publish(newWikidataDescription: description, from: ArticleDescriptionSource.central, forWikidataID: wikiDataID, language: language) { (error) in
+        fetcher.publish(newWikidataDescription: description, from: descriptionSource, forWikidataID: wikiDataID, language: articleLanguage) { (error) in
             if let error = error {
                 completion(.failure(error))
                 return

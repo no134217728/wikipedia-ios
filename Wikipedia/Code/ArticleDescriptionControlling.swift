@@ -2,6 +2,13 @@
 import Foundation
 
 protocol ArticleDescriptionControlling {
-    var currentDescription: String? { get }
+    var descriptionSource: ArticleDescriptionSource { get }
+    var article: WMFArticle { get }
+    var articleLanguage: String { get }
     func publishDescription(_ description: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func currentDescription(completion: @escaping (String?) -> Void)
+}
+
+extension ArticleDescriptionControlling {
+    var articleDisplayTitle: String? { return article.displayTitle }
 }

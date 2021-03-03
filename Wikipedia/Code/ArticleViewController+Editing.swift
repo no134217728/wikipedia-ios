@@ -1,11 +1,9 @@
+import CocoaLumberjackSwift
+
 extension ArticleViewController {
     func showEditorForSectionOrTitleDescription(with id: Int, descriptionSource: ArticleDescriptionSource?, selectedTextEditInfo: SelectedTextEditInfo? = nil, funnelSource: EditFunnelSource) {
-        // Only show the option sheet if the description is from Wikidata (descriptionSource == .central)
-        // Otherwise it needs to be changed in the section editor by editing the {{Short description}} template
-        if let descriptionSource = descriptionSource, descriptionSource == .central {
+        if let descriptionSource = descriptionSource {
             showEditSectionOrTitleDescriptionDialogForSection(with: id, descriptionSource: descriptionSource, selectedTextEditInfo: selectedTextEditInfo, funnelSource: funnelSource)
-        } else {
-            showEditorForSection(with: id, selectedTextEditInfo: selectedTextEditInfo, funnelSource: funnelSource)
         }
     }
     
@@ -42,21 +40,21 @@ extension ArticleViewController {
     }
     
     func showTitleDescriptionEditor(with descriptionSource: ArticleDescriptionSource, funnelSource: EditFunnelSource) {
-        guard let wikidataID = article.wikidataID else {
-            showGenericError()
-            return
-        }
+
         editFunnel.logTitleDescriptionEditingStart(from: funnelSource, language: articleLanguage)
         
         //todo: move into Configuration.swift? in isWikipediaHost area...isENWikipediaHost?
-        let maybeDescriptionController: ArticleDescriptionControlling? = (articleURL.wmf_language == "en" || articleURL.wmf_language == "test") ? ShortDescriptionController(articleURL: articleURL, currentDescription: nil) : WikidataDescriptionController(article: article)
+        let isENOrTest = (articleLanguage == "en")
+        //todo: currentDescription
         
+        let maybeDescriptionController: ArticleDescriptionControlling? = isENOrTest ? ShortDescriptionController(article: article, articleLanguage: articleLanguage, articleURL: articleURL, descriptionSource: descriptionSource, delegate: self) : WikidataDescriptionController(article: article, articleLanguage: articleLanguage, descriptionSource: descriptionSource)
+
         guard let descriptionController = maybeDescriptionController else {
             showGenericError()
             return
         }
         
-        let editVC = DescriptionEditViewController.with(articleURL: articleURL, wikidataID: wikidataID, article: article, descriptionSource: descriptionSource, dataStore: dataStore, theme: theme, articleDescriptionController: descriptionController)
+        let editVC = DescriptionEditViewController.with(dataStore: dataStore, theme: theme, articleDescriptionController: descriptionController)
         editVC.delegate = self
         editVC.editFunnel = editFunnel
         editVC.editFunnelSource = funnelSource
@@ -108,7 +106,36 @@ extension ArticleViewController {
 
         present(sheet, animated: true)
     }
+}
 
+extension ArticleViewController: ShortDescriptionControllerDelegate {
+    
+    /// Pulls title description from article content.
+    /// Looks for the innerText of the "pcs-edit-section-title-description" ID element
+    /// - Parameter completion: Completion when bridge call completes. Passes back title description or nil if pcs-edit-section-title-description could not be extracted.
+    func currentDescription(completion: @escaping (String?) -> Void) {
+        
+        let javascript = """
+            document.getElementById('pcs-edit-section-title-description').innerText;
+        """
+        
+        webView.evaluateJavaScript(javascript) { (result, error) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    DDLogDebug("Failure in articleHtmlTitleDescription: \(error)")
+                    completion(nil)
+                    return
+                }
+                
+                guard let stringResult = result as? String else {
+                    completion(nil)
+                    return
+                }
+                
+                completion(stringResult)
+            }
+        }
+    }
 }
 
 extension ArticleViewController: SectionEditorViewControllerDelegate {
