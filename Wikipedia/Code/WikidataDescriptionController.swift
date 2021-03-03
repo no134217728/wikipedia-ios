@@ -1,14 +1,14 @@
 
 import Foundation
 
-class WikiDataUpdater: ArticleDescriptionControlling {
+class WikidataDescriptionController: ArticleDescriptionControlling {
 
-    private let fetcher: WikidataDescriptionEditingController
+    private let fetcher: WikidataFetcher
     private let wikidataDescription: String?
     private let language: String
     private let wikiDataID: String
     
-    init?(article: WMFArticle, fetcher: WikidataDescriptionEditingController = WikidataDescriptionEditingController()) {
+    init?(article: WMFArticle, fetcher: WikidataFetcher = WikidataFetcher()) {
         self.fetcher = fetcher
         self.wikidataDescription = article.wikidataDescription
         
@@ -25,10 +25,10 @@ class WikiDataUpdater: ArticleDescriptionControlling {
         return wikidataDescription
     }
     
-    func publish(newDescription: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func publishDescription(_ description: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
         //todo: no need to pass in .local anymore
-        fetcher.publish(newWikidataDescription: newDescription, from: .local, forWikidataID: wikiDataID, language: language) { (error) in
+        fetcher.publish(newWikidataDescription: description, from: ArticleDescriptionSource.central, forWikidataID: wikiDataID, language: language) { (error) in
             if let error = error {
                 completion(.failure(error))
                 return

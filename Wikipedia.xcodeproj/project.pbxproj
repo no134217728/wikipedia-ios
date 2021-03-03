@@ -300,6 +300,11 @@
 		6734EE7D22976BA300F00B05 /* TalkPageHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6706A21822927D63004774E2 /* TalkPageHintViewController.swift */; };
 		6734F052227B634900BDDB94 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734F051227B634900BDDB94 /* ActionButton.swift */; };
 		673612F224FD7210002A1989 /* ArticleAsLivingDocViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673612F124FD7210002A1989 /* ArticleAsLivingDocViewModelTests.swift */; };
+		673D91EF25EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */; };
+		673D91F025EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */; };
+		673D91F125EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */; };
+		673D91F225EFFFC0003036D2 /* WikidataFetcher+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */; };
+		673D921925F00388003036D2 /* ShortDescriptionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D921825F00388003036D2 /* ShortDescriptionControllerTests.swift */; };
 		6747117E250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747117D250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift */; };
 		6747117F250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747117D250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift */; };
 		67471180250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747117D250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift */; };
@@ -575,14 +580,14 @@
 		67DFE8E125EEB48A0084AB54 /* ArticleDescriptionControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8DF25EEB48A0084AB54 /* ArticleDescriptionControlling.swift */; };
 		67DFE8E225EEB48A0084AB54 /* ArticleDescriptionControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8DF25EEB48A0084AB54 /* ArticleDescriptionControlling.swift */; };
 		67DFE8E325EEB48A0084AB54 /* ArticleDescriptionControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8DF25EEB48A0084AB54 /* ArticleDescriptionControlling.swift */; };
-		67DFE90025EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */; };
-		67DFE90125EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */; };
-		67DFE90225EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */; };
-		67DFE90325EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */; };
-		67DFE90E25EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */; };
-		67DFE90F25EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */; };
-		67DFE91025EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */; };
-		67DFE91125EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */; };
+		67DFE90025EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */; };
+		67DFE90125EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */; };
+		67DFE90225EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */; };
+		67DFE90325EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */; };
+		67DFE90E25EEC0180084AB54 /* ShortDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */; };
+		67DFE90F25EEC0180084AB54 /* ShortDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */; };
+		67DFE91025EEC0180084AB54 /* ShortDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */; };
+		67DFE91125EEC0180084AB54 /* ShortDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */; };
 		67E069062238A396008550AC /* FindAndReplaceKeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E069052238A396008550AC /* FindAndReplaceKeyboardBar.swift */; };
 		67E069082238A5A6008550AC /* WMFFindAndReplaceKeyboardBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67E069072238A5A5008550AC /* WMFFindAndReplaceKeyboardBar.xib */; };
 		67E0690A22399D1C008550AC /* ReadingThemesControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B03F31CE0FB7700009083 /* ReadingThemesControlsViewController.swift */; };
@@ -1142,7 +1147,7 @@
 		7AE1FE3721B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1FE3021B4A9790068BE9F /* TextFormattingButtonView.xib */; };
 		7AE1FE3821B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1FE3021B4A9790068BE9F /* TextFormattingButtonView.xib */; };
 		7AE1FE3921B4A9790068BE9F /* TextFormattingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1FE3021B4A9790068BE9F /* TextFormattingButtonView.xib */; };
-		7AE5248D21383D9C00CDC817 /* WikidataDescriptionEditingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5248C21383D9C00CDC817 /* WikidataDescriptionEditingController.swift */; };
+		7AE5248D21383D9C00CDC817 /* WikidataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5248C21383D9C00CDC817 /* WikidataFetcher.swift */; };
 		7AE99B2821CC4F420092BE7F /* TextSizeFormattingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE99B2721CC4F420092BE7F /* TextSizeFormattingTableViewController.swift */; };
 		7AE99B2921CC4F420092BE7F /* TextSizeFormattingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE99B2721CC4F420092BE7F /* TextSizeFormattingTableViewController.swift */; };
 		7AE99B2A21CC4F420092BE7F /* TextSizeFormattingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE99B2721CC4F420092BE7F /* TextSizeFormattingTableViewController.swift */; };
@@ -2288,7 +2293,6 @@
 		D88C701A1EE595E90022A26A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C70171EE595E90022A26A /* MapView.swift */; };
 		D88C701B1EE595E90022A26A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C70171EE595E90022A26A /* MapView.swift */; };
 		D88E0E1D1EBB5A97005B8E9E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88E0E1C1EBB5A97005B8E9E /* Bundle.swift */; };
-		D88FCADF1E4B74D300505A9F /* WikidataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */; };
 		D88FCAE11E4B776600505A9F /* MapUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCAE01E4B776600505A9F /* MapUtilities.swift */; };
 		D890C84B1D772B02007132C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D890C84D1D772B02007132C9 /* InfoPlist.strings */; };
 		D890C85D1D772ED3007132C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D890C85B1D772ED3007132C9 /* InfoPlist.strings */; };
@@ -2311,7 +2315,6 @@
 		D8A42A621E815A9C00D8E281 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87233FF1E1FF0A500751E83 /* PlacesViewController.swift */; };
 		D8A42A641E815A9C00D8E281 /* WMFAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B027FD271E678F5C005644A9 /* WMFAuthButton.swift */; };
 		D8A42A651E815A9C00D8E281 /* WMFReferencePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01490A41DB96EA7007F5391 /* WMFReferencePanelViewController.swift */; };
-		D8A42A681E815A9C00D8E281 /* WikidataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */; };
 		D8A42A691E815A9C00D8E281 /* UIButton+WMFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E802BD1C0CD2360065EBC0 /* UIButton+WMFButton.m */; };
 		D8A42A6A1E815A9C00D8E281 /* TableOfContentsAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E803701C0CD9A80065EBC0 /* TableOfContentsAnimator.swift */; };
 		D8A42A6D1E815A9C00D8E281 /* WMFReferencePageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0338A831DBF0AF20012F588 /* WMFReferencePageBackgroundView.swift */; };
@@ -2542,7 +2545,6 @@
 		D8CE24E81E698E2400DAE2E0 /* WMFCaptchaResetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F92C6E1E3C580900B72802 /* WMFCaptchaResetter.swift */; };
 		D8CE24EC1E698E2400DAE2E0 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87233FF1E1FF0A500751E83 /* PlacesViewController.swift */; };
 		D8CE24EE1E698E2400DAE2E0 /* WMFReferencePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01490A41DB96EA7007F5391 /* WMFReferencePanelViewController.swift */; };
-		D8CE24F11E698E2400DAE2E0 /* WikidataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */; };
 		D8CE24F21E698E2400DAE2E0 /* UIButton+WMFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E802BD1C0CD2360065EBC0 /* UIButton+WMFButton.m */; };
 		D8CE24F31E698E2400DAE2E0 /* TableOfContentsAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E803701C0CD9A80065EBC0 /* TableOfContentsAnimator.swift */; };
 		D8CE24F61E698E2400DAE2E0 /* WMFReferencePageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0338A831DBF0AF20012F588 /* WMFReferencePageBackgroundView.swift */; };
@@ -2786,7 +2788,6 @@
 		D8EC3DDF1E9BDA35006712EB /* WMFCaptchaResetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F92C6E1E3C580900B72802 /* WMFCaptchaResetter.swift */; };
 		D8EC3DE31E9BDA35006712EB /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87233FF1E1FF0A500751E83 /* PlacesViewController.swift */; };
 		D8EC3DE51E9BDA35006712EB /* WMFReferencePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01490A41DB96EA7007F5391 /* WMFReferencePanelViewController.swift */; };
-		D8EC3DE81E9BDA35006712EB /* WikidataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */; };
 		D8EC3DE91E9BDA35006712EB /* UIButton+WMFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E802BD1C0CD2360065EBC0 /* UIButton+WMFButton.m */; };
 		D8EC3DEA1E9BDA35006712EB /* TableOfContentsAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E803701C0CD9A80065EBC0 /* TableOfContentsAnimator.swift */; };
 		D8EC3DED1E9BDA35006712EB /* WMFReferencePageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0338A831DBF0AF20012F588 /* WMFReferencePageBackgroundView.swift */; };
@@ -3628,6 +3629,7 @@
 		6734116F22773122005B31DA /* TalkPageReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPageReplyCell.swift; sourceTree = "<group>"; };
 		6734F051227B634900BDDB94 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		673612F124FD7210002A1989 /* ArticleAsLivingDocViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAsLivingDocViewModelTests.swift; sourceTree = "<group>"; };
+		673D921825F00388003036D2 /* ShortDescriptionControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDescriptionControllerTests.swift; sourceTree = "<group>"; };
 		6747117D250703BB00287951 /* ArticleAsLivingDocReferenceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAsLivingDocReferenceCollectionViewCell.swift; sourceTree = "<group>"; };
 		674711822507253500287951 /* ArticleAsLivingDocSnippetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAsLivingDocSnippetCollectionViewCell.swift; sourceTree = "<group>"; };
 		6747118725072D1500287951 /* IconTitleBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTitleBadge.swift; sourceTree = "<group>"; };
@@ -3717,8 +3719,8 @@
 		67DC5BE823A03FE700B03A84 /* ArticleToolbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleToolbarController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		67DC5BEE23A1427C00B03A84 /* ActionHandlerScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionHandlerScript.swift; sourceTree = "<group>"; };
 		67DFE8DF25EEB48A0084AB54 /* ArticleDescriptionControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDescriptionControlling.swift; sourceTree = "<group>"; };
-		67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiDataUpdater.swift; sourceTree = "<group>"; };
-		67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDescriptionUpdater.swift; sourceTree = "<group>"; };
+		67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikidataDescriptionController.swift; sourceTree = "<group>"; };
+		67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDescriptionController.swift; sourceTree = "<group>"; };
 		67E069052238A396008550AC /* FindAndReplaceKeyboardBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindAndReplaceKeyboardBar.swift; sourceTree = "<group>"; };
 		67E069072238A5A5008550AC /* WMFFindAndReplaceKeyboardBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMFFindAndReplaceKeyboardBar.xib; sourceTree = "<group>"; };
 		67E06918223B32DF008550AC /* FocusNavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FocusNavigationView.xib; sourceTree = "<group>"; };
@@ -3893,7 +3895,7 @@
 		7AE1D3381FCD10B900393471 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		7AE1FE2F21B4A9790068BE9F /* TextFormattingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormattingButtonView.swift; sourceTree = "<group>"; };
 		7AE1FE3021B4A9790068BE9F /* TextFormattingButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFormattingButtonView.xib; sourceTree = "<group>"; };
-		7AE5248C21383D9C00CDC817 /* WikidataDescriptionEditingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WikidataDescriptionEditingController.swift; path = Wikipedia/Code/WikidataDescriptionEditingController.swift; sourceTree = SOURCE_ROOT; };
+		7AE5248C21383D9C00CDC817 /* WikidataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WikidataFetcher.swift; path = Wikipedia/Code/WikidataFetcher.swift; sourceTree = SOURCE_ROOT; };
 		7AE99B2721CC4F420092BE7F /* TextSizeFormattingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeFormattingTableViewController.swift; sourceTree = "<group>"; };
 		7AE99B2D21CC53AB0092BE7F /* TextFontFormattingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFontFormattingTableViewController.swift; sourceTree = "<group>"; };
 		7AEBAD442102117C002FAB41 /* NSFetchedResultsController+IndexPathValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+IndexPathValidation.swift"; sourceTree = "<group>"; };
@@ -4887,7 +4889,7 @@
 		D8831D381EC33F1D008CA89A /* ArticleFullWidthImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleFullWidthImageCollectionViewCell.swift; path = Wikipedia/Code/ArticleFullWidthImageCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D88C70171EE595E90022A26A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D88E0E1C1EBB5A97005B8E9E /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikidataFetcher.swift; sourceTree = "<group>"; };
+		D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WikidataFetcher+Places.swift"; sourceTree = "<group>"; };
 		D88FCAE01E4B776600505A9F /* MapUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUtilities.swift; sourceTree = "<group>"; };
 		D890C8531D772B27007132C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D890C8541D772B4E007132C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -6415,6 +6417,14 @@
 			name = "Reading Themes Controls";
 			sourceTree = "<group>";
 		};
+		673D921725F0035B003036D2 /* Article Description Update Tests */ = {
+			isa = PBXGroup;
+			children = (
+				673D921825F00388003036D2 /* ShortDescriptionControllerTests.swift */,
+			);
+			path = "Article Description Update Tests";
+			sourceTree = "<group>";
+		};
 		6782DB8F2343B691003FA21B /* Diff */ = {
 			isa = PBXGroup;
 			children = (
@@ -6626,14 +6636,14 @@
 			name = Article;
 			sourceTree = "<group>";
 		};
-		67DFE8DE25EEB45F0084AB54 /* Updating */ = {
+		67DFE8DE25EEB45F0084AB54 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				67DFE8DF25EEB48A0084AB54 /* ArticleDescriptionControlling.swift */,
-				67DFE8FF25EEBFF30084AB54 /* WikiDataUpdater.swift */,
-				67DFE90D25EEC0180084AB54 /* ShortDescriptionUpdater.swift */,
+				67DFE8FF25EEBFF30084AB54 /* WikidataDescriptionController.swift */,
+				67DFE90D25EEC0180084AB54 /* ShortDescriptionController.swift */,
 			);
-			name = Updating;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		67E8B0772268F8E300537BC9 /* View Controllers */ = {
@@ -7166,7 +7176,7 @@
 		B0524B0121484F1F00D8FD8D /* Description Editing */ = {
 			isa = PBXGroup;
 			children = (
-				67DFE8DE25EEB45F0084AB54 /* Updating */,
+				67DFE8DE25EEB45F0084AB54 /* Controllers */,
 				B0D3E709214AF54F007578BA /* Form */,
 				B08013D22149F5DA00B52D03 /* Help */,
 				B0524B7A2148846F00D8FD8D /* Welcome */,
@@ -8006,6 +8016,7 @@
 		BCD67E7D1C1F12F2005179E1 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				673D921725F0035B003036D2 /* Article Description Update Tests */,
 				67ED8EAF24F99F1900DD5D39 /* Significant Events Tests */,
 				679FA102242E64FC0095F3C6 /* Article Tests */,
 				67E8B0AA226A6DB000537BC9 /* TalkPageTests */,
@@ -8598,7 +8609,7 @@
 				D88C70171EE595E90022A26A /* MapView.swift */,
 				D82117FB1EE58C080076C040 /* MapAnnotation.swift */,
 				D88FCAE01E4B776600505A9F /* MapUtilities.swift */,
-				D88FCADE1E4B74D300505A9F /* WikidataFetcher.swift */,
+				D88FCADE1E4B74D300505A9F /* WikidataFetcher+Places.swift */,
 				D808DCEC1E438C0C00A3E89C /* PlaceSearch.swift */,
 				D808DCEA1E438BE300A3E89C /* PlaceSearchSuggestionController.swift */,
 				D80ED25A1EE18D0900CE8C50 /* PlacesSearchSuggestionTableViewCell.swift */,
@@ -8652,7 +8663,7 @@
 				D8E78FA51FB4C8740094B968 /* Session.swift */,
 				D826C51A217741C50012F940 /* ReachabilityNotifier.swift */,
 				D8635AE7216E2BFC001A7C00 /* HTTPCookieStorage+Migration.swift */,
-				7AE5248C21383D9C00CDC817 /* WikidataDescriptionEditingController.swift */,
+				7AE5248C21383D9C00CDC817 /* WikidataFetcher.swift */,
 				83E9C45A2419193C006BDBC2 /* WikipediaSiteInfo.swift */,
 				D85F56A1219C45C900AF3E13 /* URLComponents+Extensions.swift */,
 				835A042C223AD63000D4D758 /* ArticleSummaryController.swift */,
@@ -10364,6 +10375,7 @@
 				B0E808951C0D16330065EBC0 /* NSArray+WMFShuffle.m in Sources */,
 				A452F9FB24081A7200D8ED09 /* LocationManagerTests.swift in Sources */,
 				B0E8090F1C0D18F30065EBC0 /* WMFMathTests.m in Sources */,
+				673D921925F00388003036D2 /* ShortDescriptionControllerTests.swift in Sources */,
 				B0D530EB1CE151C10078BAED /* CodeFileLocationTests.m in Sources */,
 				6790AAF422D6861500D442D6 /* TalkPageFetcherTests.swift in Sources */,
 				679F0AAD24574AD400EF4A6A /* ArticleViewControllerTests.swift in Sources */,
@@ -10492,7 +10504,6 @@
 				B0ACB13321265B930078C136 /* WMFImageGalleryDescriptionTextView.swift in Sources */,
 				B0C7A0801F710E94008415E7 /* WMFWelcomeLanguagesAnimationBackgroundView.swift in Sources */,
 				8382F8D320D928BF00AE5250 /* ColumnarCollectionViewControllerLayoutCache.swift in Sources */,
-				D88FCADF1E4B74D300505A9F /* WikidataFetcher.swift in Sources */,
 				B0432344210680A900A9A6B6 /* WMFContentGroupKind+FeedCustomization.swift in Sources */,
 				FFD7B85924B3CA7A005C2471 /* ReferenceShowing.swift in Sources */,
 				83F1096E23D0E787003F3E9E /* RandomArticleViewController.swift in Sources */,
@@ -10638,7 +10649,7 @@
 				7A827659226E4E41000A2389 /* EditPreviewInternalLinkViewController.swift in Sources */,
 				B0E8036D1C0CD98B0065EBC0 /* TableOfContentsViewController.swift in Sources */,
 				B0E805921C0CE2C60065EBC0 /* ProtectedEditAttemptFunnel.m in Sources */,
-				67DFE90E25EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */,
+				67DFE90E25EEC0180084AB54 /* ShortDescriptionController.swift in Sources */,
 				7A9F2776225E3462002119B3 /* InsertMediaSearchResultsCollectionViewController.swift in Sources */,
 				B0DF6F811CFE1D0B0046E507 /* WKWebView+WMFWebViewControllerJavascript.m in Sources */,
 				0EC044791C7917860033D773 /* WMFArticleTextActivitySource.m in Sources */,
@@ -10693,6 +10704,7 @@
 				00D280F7247EFFFE006BEE23 /* Date+Extensions.swift in Sources */,
 				67F73E712267B8020079DEEF /* TalkPageTopicListViewController.swift in Sources */,
 				7A19C64820DD3440000EF7F7 /* BaseExploreFeedSettingsViewController.swift in Sources */,
+				673D91EF25EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */,
 				6782DBD32343FE03003FA21B /* DiffListGroupViewModel.swift in Sources */,
 				67059DB52260D034009811AA /* SchemeHandler.swift in Sources */,
 				FFE891462445150B0058B642 /* AppTabBarDelegate.swift in Sources */,
@@ -10735,7 +10747,7 @@
 				BA7683C21F30C56300A487AA /* ImageDimmingExampleViewController.swift in Sources */,
 				674E8AB92382DEFF0053D206 /* DiffTransformer.swift in Sources */,
 				67A5E657236775C3007749FB /* GlobalUserInfoFetcher.swift in Sources */,
-				67DFE90025EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */,
+				67DFE90025EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */,
 				83B01F9023DB41BE001185F4 /* ArticleViewController+Sharing.swift in Sources */,
 				B0E8054D1C0CE0DC0065EBC0 /* UIScrollView+ScrollSubviewToLocation.m in Sources */,
 				B0E806331C0CE7680065EBC0 /* MTLValueTransformer+WMFNumericValueTransformer.m in Sources */,
@@ -11106,7 +11118,7 @@
 				D8E892252176124F00587F61 /* PeriodicWorker.swift in Sources */,
 				0E8768371DDE002C00B8CACD /* WMFAnnouncementsContentSource.m in Sources */,
 				83A6D44325100BEE00F9F909 /* Bundle+IsAppExtension.swift in Sources */,
-				7AE5248D21383D9C00CDC817 /* WikidataDescriptionEditingController.swift in Sources */,
+				7AE5248D21383D9C00CDC817 /* WikidataFetcher.swift in Sources */,
 				A4C558BD2403D74100AFBFDC /* LocationManagerProtocol.swift in Sources */,
 				8383446C1F62EBD000BD5A37 /* UIView+Constraints.swift in Sources */,
 				83E880E823EB19270087223F /* MediaList.swift in Sources */,
@@ -11349,7 +11361,6 @@
 				83F1097123D0E787003F3E9E /* RandomArticleViewController.swift in Sources */,
 				7A715664226972DF0066FEC4 /* InsertMediaImageTypeSettingsViewController.swift in Sources */,
 				7A29A5D11F6C49C600E8F42B /* CollectionViewUpdater.swift in Sources */,
-				D8A42A681E815A9C00D8E281 /* WikidataFetcher.swift in Sources */,
 				D8A42A691E815A9C00D8E281 /* UIButton+WMFButton.m in Sources */,
 				D8A42A6A1E815A9C00D8E281 /* TableOfContentsAnimator.swift in Sources */,
 				D8A42A6D1E815A9C00D8E281 /* WMFReferencePageBackgroundView.swift in Sources */,
@@ -11489,7 +11500,7 @@
 				83A642782226CCF1004A1796 /* SwiftKVOCrashWorkaround.swift in Sources */,
 				7A82765C226E4E41000A2389 /* EditPreviewInternalLinkViewController.swift in Sources */,
 				D8A42AC61E815A9C00D8E281 /* ProtectedEditAttemptFunnel.m in Sources */,
-				67DFE91125EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */,
+				67DFE91125EEC0180084AB54 /* ShortDescriptionController.swift in Sources */,
 				B0C7A07B1F710E75008415E7 /* WMFWelcomeExplorationAnimationBackgroundView.swift in Sources */,
 				67EA9E12228F0359008D9EFD /* TalkPageHeaderView.swift in Sources */,
 				7A9F2779225E3462002119B3 /* InsertMediaSearchResultsCollectionViewController.swift in Sources */,
@@ -11544,6 +11555,7 @@
 				00D280FA247EFFFE006BEE23 /* Date+Extensions.swift in Sources */,
 				7ABAD6B720338CFB006A364C /* ReadingListDetailUnderBarViewController.swift in Sources */,
 				7A19C64B20DD3440000EF7F7 /* BaseExploreFeedSettingsViewController.swift in Sources */,
+				673D91F225EFFFC0003036D2 /* WikidataFetcher+Places.swift in Sources */,
 				832289DE1F7291BA0081A5FB /* SizeThatFitsReusableView.swift in Sources */,
 				6782DBD62343FE03003FA21B /* DiffListGroupViewModel.swift in Sources */,
 				67059DB82260D61A009811AA /* SchemeHandler.swift in Sources */,
@@ -11586,7 +11598,7 @@
 				674E8ABC2382DF030053D206 /* DiffTransformer.swift in Sources */,
 				D8A42B101E815A9C00D8E281 /* MTLValueTransformer+WMFNumericValueTransformer.m in Sources */,
 				671F5E022367EDC600111116 /* GlobalUserInfoFetcher.swift in Sources */,
-				67DFE90325EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */,
+				67DFE90325EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */,
 				67985A572523D80100EBF353 /* ArticleAsLivingDocController.swift in Sources */,
 				83B01F9323DB41BE001185F4 /* ArticleViewController+Sharing.swift in Sources */,
 				7ADF498A21B45E42009EA338 /* TextFormattingGroupedToolbarView.swift in Sources */,
@@ -11838,7 +11850,6 @@
 				7A715662226972DF0066FEC4 /* InsertMediaImageTypeSettingsViewController.swift in Sources */,
 				D818D38C1ED765470076110D /* ArticleLocationCollectionViewController.swift in Sources */,
 				7A71567A22699D5B0066FEC4 /* InsertMediaLabelTableFooterView.swift in Sources */,
-				D8CE24F11E698E2400DAE2E0 /* WikidataFetcher.swift in Sources */,
 				D8CE24F21E698E2400DAE2E0 /* UIButton+WMFButton.m in Sources */,
 				D8CE24F31E698E2400DAE2E0 /* TableOfContentsAnimator.swift in Sources */,
 				7AEC985A219F529000BEF62B /* DefaultEditToolbarView.swift in Sources */,
@@ -11968,7 +11979,7 @@
 				7A71565C226964500066FEC4 /* InsertMediaImagePositionSettingsViewController.swift in Sources */,
 				67CEF2702351113000D5CA6C /* DiffController.swift in Sources */,
 				D8CE25521E698E2400DAE2E0 /* WMFArticleTextActivitySource.m in Sources */,
-				67DFE90225EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */,
+				67DFE90225EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */,
 				8321FCCD2387231E0079F3C7 /* ViewControllerRouter.swift in Sources */,
 				D8BDA8BF1E71B8D10031F4BF /* String?+WMFExtras.swift in Sources */,
 				D8CE25571E698E2400DAE2E0 /* WMFPasswordResetter.swift in Sources */,
@@ -12062,6 +12073,7 @@
 				D8CE258F1E698E2400DAE2E0 /* WMFWelcomeAnimationViewControllers.swift in Sources */,
 				D8CE25901E698E2400DAE2E0 /* TableOfContentsCell.swift in Sources */,
 				D8CE25931E698E2400DAE2E0 /* WMFSettingsMenuItem.m in Sources */,
+				673D91F125EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */,
 				674E8ABA2382DF020053D206 /* DiffTransformer.swift in Sources */,
 				B0432345210680A900A9A6B6 /* WMFContentGroupKind+FeedCustomization.swift in Sources */,
 				83987AD120E4FB2C00C92C60 /* UISearchBar+Theme.swift in Sources */,
@@ -12197,7 +12209,7 @@
 				B0845E1220618DA400CDD98E /* SavedProgressViewController.swift in Sources */,
 				D8CE25EC1E698E2400DAE2E0 /* WMFImageGalleryViewController.m in Sources */,
 				7AF0265722985CB9000E0A06 /* BeKindInputAccessoryView.swift in Sources */,
-				67DFE91025EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */,
+				67DFE91025EEC0180084AB54 /* ShortDescriptionController.swift in Sources */,
 				67DAEDA423CE24DA003AA208 /* SavedArticlesFetcher.swift in Sources */,
 				7AB7DEC9227203A600DD61A2 /* InsertMediaViewController.swift in Sources */,
 				B0CD9DDD1F70997400051843 /* WMFWelcomeAnimationView.swift in Sources */,
@@ -12323,7 +12335,6 @@
 				7A715663226972DF0066FEC4 /* InsertMediaImageTypeSettingsViewController.swift in Sources */,
 				D8EC3DE51E9BDA35006712EB /* WMFReferencePanelViewController.swift in Sources */,
 				7A71567B22699D5B0066FEC4 /* InsertMediaLabelTableFooterView.swift in Sources */,
-				D8EC3DE81E9BDA35006712EB /* WikidataFetcher.swift in Sources */,
 				D8EC3DE91E9BDA35006712EB /* UIButton+WMFButton.m in Sources */,
 				67B64D582507DE3E00FA27F3 /* ArticleAsLivingDocSectionHeaderView.swift in Sources */,
 				D82E956C1F156F77007BD960 /* UIView+SubviewEnumeration.swift in Sources */,
@@ -12454,7 +12465,7 @@
 				7A71565D226964500066FEC4 /* InsertMediaImagePositionSettingsViewController.swift in Sources */,
 				D818D3AD1ED87E8F0076110D /* ArticleLocationCellUpdating.swift in Sources */,
 				67CEF2712351113000D5CA6C /* DiffController.swift in Sources */,
-				67DFE90125EEBFF30084AB54 /* WikiDataUpdater.swift in Sources */,
+				67DFE90125EEBFF30084AB54 /* WikidataDescriptionController.swift in Sources */,
 				D82117FE1EE58C080076C040 /* MapAnnotation.swift in Sources */,
 				D8EC3E421E9BDA35006712EB /* TableOfContentsViewController.swift in Sources */,
 				8321FCCE2387231E0079F3C7 /* ViewControllerRouter.swift in Sources */,
@@ -12548,6 +12559,7 @@
 				FFD7B85724B3B39A005C2471 /* ReferenceBackLinksViewControllerDelegate.swift in Sources */,
 				832289DD1F7291BA0081A5FB /* SizeThatFitsReusableView.swift in Sources */,
 				674E8ABB2382DF030053D206 /* DiffTransformer.swift in Sources */,
+				673D91F025EFFFBF003036D2 /* WikidataFetcher+Places.swift in Sources */,
 				83AE1C821F34BB5A004B62E0 /* ImageDimmingExampleViewController.swift in Sources */,
 				D8EC3E8E1E9BDA35006712EB /* WMFSettingsMenuItem.m in Sources */,
 				D8EC3E901E9BDA35006712EB /* UIScrollView+ScrollSubviewToLocation.m in Sources */,
@@ -12683,7 +12695,7 @@
 				B0845E1320618DA400CDD98E /* SavedProgressViewController.swift in Sources */,
 				B0F9299C1F84789D002A0788 /* WMFWelcomeInitialViewController.swift in Sources */,
 				6747118925072D1500287951 /* IconTitleBadge.swift in Sources */,
-				67DFE90F25EEC0180084AB54 /* ShortDescriptionUpdater.swift in Sources */,
+				67DFE90F25EEC0180084AB54 /* ShortDescriptionController.swift in Sources */,
 				7AF0265822985CB9000E0A06 /* BeKindInputAccessoryView.swift in Sources */,
 				67DAEDA523CE24DA003AA208 /* SavedArticlesFetcher.swift in Sources */,
 				7AB7DECA227203A600DD61A2 /* InsertMediaViewController.swift in Sources */,

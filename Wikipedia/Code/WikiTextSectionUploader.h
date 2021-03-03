@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
           forArticleURL:(NSURL *)articleURL
              completion:(void (^)(NSDictionary * _Nullable result, NSError * _Nullable error))completion;
 
-- (void)prependToSection:(NSString *)section
+- (void)prependToSectionID:(NSString *)sectionID
                          text:(NSString *)text
                 forArticleURL:(NSURL *)articleURL
              isMinorEdit:(BOOL)isMinorEdit

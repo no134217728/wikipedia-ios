@@ -52,7 +52,7 @@
     [self updateWithArticleURL:articleURL parameters:params captchaWord:nil completion:completion];
 }
 
-- (void)prependToSection:(NSString *)section
+- (void)prependToSectionID:(NSString *)sectionID
                          text:(NSString *)text
                 forArticleURL:(NSURL *)articleURL
              isMinorEdit:(BOOL)isMinorEdit
@@ -69,7 +69,7 @@
     @{
       @"action": @"edit",
       @"prependtext": text,
-      @"section": section,
+      @"section": sectionID,
       @"title": articleURL.wmf_title,
       @"format": @"json"
       }

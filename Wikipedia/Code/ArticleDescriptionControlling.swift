@@ -3,5 +3,5 @@ import Foundation
 
 protocol ArticleDescriptionControlling {
     var currentDescription: String? { get }
-    func publish(newDescription: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func publishDescription(_ description: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
