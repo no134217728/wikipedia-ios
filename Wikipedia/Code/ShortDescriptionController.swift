@@ -81,6 +81,14 @@ class ShortDescriptionController: ArticleDescriptionControlling {
         let errorText = "\((error as NSError).domain)-\((error as NSError).code)"
         return errorText
     }
+    
+    func learnMoreViewControllerWithTheme(_ theme: Theme) -> UIViewController? {
+        guard let url = URL(string: "https://en.wikipedia.org/wiki/Wikipedia:Short_description") else {
+            return nil
+        }
+        
+        return SinglePageWebViewController(url: url, theme: theme, doesUseSimpleNavigationBar: true)
+    }
 }
 
 //MARK: Private helpers
@@ -178,7 +186,6 @@ private extension String {
         }
         
         return regex.stringByReplacingMatches(in: self, range: NSRange(self.startIndex..., in: self), withTemplate: "$1\(newShortDescription)$3")
-        
     }
 }
 

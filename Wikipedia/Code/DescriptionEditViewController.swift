@@ -178,7 +178,11 @@ import WMF
     }
 
     @IBAction func showAboutWikidataPage() {
-        let vc = DescriptionHelpViewController.init(theme: theme)
+        
+        guard let vc = articleDescriptionController.learnMoreViewControllerWithTheme(theme) else {
+            return
+        }
+        
         let navVC = WMFThemeableNavigationController.init(rootViewController: vc, theme: theme)
         present(navVC, animated: true, completion: nil)
     }

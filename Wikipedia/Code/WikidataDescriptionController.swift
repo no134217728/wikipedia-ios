@@ -45,4 +45,8 @@ class WikidataDescriptionController: ArticleDescriptionControlling {
         let errorText = apiErrorCode ?? "\((error as NSError).domain)-\((error as NSError).code)"
         return errorText
     }
+    
+    func learnMoreViewControllerWithTheme(_ theme: Theme) -> UIViewController? {
+        return DescriptionHelpViewController.init(theme: theme)
+    }
 }

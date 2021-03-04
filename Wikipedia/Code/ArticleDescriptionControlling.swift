@@ -8,6 +8,7 @@ protocol ArticleDescriptionControlling {
     func publishDescription(_ description: String, completion: @escaping (Result<Void, Error>) -> Void)
     func currentDescription(completion: @escaping (String?) -> Void)
     func errorTextFromError(_ error: Error) -> String
+    func learnMoreViewControllerWithTheme(_ theme: Theme) -> UIViewController?
 }
 
 extension ArticleDescriptionControlling {
