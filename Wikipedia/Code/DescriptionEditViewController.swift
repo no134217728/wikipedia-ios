@@ -239,8 +239,7 @@ import WMF
                         NotificationCenter.default.post(name: DescriptionEditViewController.didPublishNotification, object: nil)
                     }
                 case .failure(let error):
-                    let apiErrorCode = (error as? WikidataAPIResult.APIError)?.code
-                    let errorText = apiErrorCode ?? "\((error as NSError).domain)-\((error as NSError).code)"
+                    let errorText = self.articleDescriptionController.errorTextFromError(error)
                     self.editFunnel?.logTitleDescriptionSaveError(source: self.editFunnelSource, isAddingNewTitleDescription: self.isAddingNewTitleDescription, language: self.articleDescriptionController.articleLanguage, errorText: errorText)
                     WMFAlertManager.sharedInstance.showErrorAlert(error as NSError, sticky: true, dismissPreviousAlerts: true, tapCallBack: nil)
                 }

@@ -39,4 +39,10 @@ class WikidataDescriptionController: ArticleDescriptionControlling {
             completion(.success(()))
         }
     }
+    
+    func errorTextFromError(_ error: Error) -> String {
+        let apiErrorCode = (error as? WikidataAPIResult.APIError)?.code
+        let errorText = apiErrorCode ?? "\((error as NSError).domain)-\((error as NSError).code)"
+        return errorText
+    }
 }

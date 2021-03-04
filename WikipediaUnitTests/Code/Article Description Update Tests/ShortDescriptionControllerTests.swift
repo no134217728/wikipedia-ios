@@ -20,14 +20,6 @@ class ShortDescriptionControllerTests: XCTestCase {
 
         The '''cat''' (''Felis catus'') is a [[Domestication|domestic]] [[species]] of small [[carnivorous]] [[mammal]].<ref name="Linnaeus1758">{{Cite book |last=Linnaeus |first=C. |title=Systema naturae per regna tria naturae: secundum classes, ordines, genera, species, cum characteribus, differentiis, synonymis, locis |location=Holmiae |publisher=Laurentii Salvii |date=1758 |page=42 |chapter=Felis Catus |language=la |volume=1 |edition=Tenth reformed |chapter-url= https://archive.org/details/mobot31753000798865/page/42}}</ref><ref name="MSW3fc">{{MSW3 Wozencraft |id=14000031 |pages=534–535 |heading=Species ''Felis catus''}}</ref>
         """
-    
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
 
     func testDetectShortDescription() throws {
         

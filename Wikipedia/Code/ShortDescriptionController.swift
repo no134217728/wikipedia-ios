@@ -33,10 +33,10 @@ class ShortDescriptionController: ArticleDescriptionControlling {
     ///   - sectionFetcher: section fetcher that fetches the first section of wikitext. Injectable for unit tests.
     ///   - sectionUploader: section uploader that uploads the new section wikitext. Injectable for unit tests.
     ///   - article: WMFArticle from ArticleViewController
-    ///   - articleURL: URL of article that we want to update (from ArticleViewController)
     ///   - articleLanguage: Language of article that we want to update (from ArticleViewController)
+    ///   - articleURL: URL of article that we want to update (from ArticleViewController)
     ///   - descriptionSource: ArticleDescriptionSource determined via .edit action across ArticleViewController js bridge
-    ///   - delegate: Delegate that can extract the title description from the article content
+    ///   - delegate: Delegate that can extract the current description from the article content
     init(sectionFetcher: SectionFetcher = SectionFetcher(), sectionUploader: WikiTextSectionUploader = WikiTextSectionUploader(), article: WMFArticle, articleLanguage: String, articleURL: URL, descriptionSource: ArticleDescriptionSource, delegate: ShortDescriptionControllerDelegate) {
         self.sectionFetcher = sectionFetcher
         self.sectionUploader = sectionUploader
@@ -75,6 +75,11 @@ class ShortDescriptionController: ArticleDescriptionControlling {
     
     func currentDescription(completion: @escaping (String?) -> Void) {
         delegate?.currentDescription(completion: completion)
+    }
+    
+    func errorTextFromError(_ error: Error) -> String {
+        let errorText = "\((error as NSError).domain)-\((error as NSError).code)"
+        return errorText
     }
 }
 

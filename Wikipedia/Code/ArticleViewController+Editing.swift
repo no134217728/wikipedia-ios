@@ -44,8 +44,7 @@ extension ArticleViewController {
         editFunnel.logTitleDescriptionEditingStart(from: funnelSource, language: articleLanguage)
         
         //todo: move into Configuration.swift? in isWikipediaHost area...isENWikipediaHost?
-        let isENOrTest = (articleLanguage == "en")
-        //todo: currentDescription
+        let isENOrTest = (articleLanguage == "en" || articleLanguage == "test")
         
         let maybeDescriptionController: ArticleDescriptionControlling? = isENOrTest ? ShortDescriptionController(article: article, articleLanguage: articleLanguage, articleURL: articleURL, descriptionSource: descriptionSource, delegate: self) : WikidataDescriptionController(article: article, articleLanguage: articleLanguage, descriptionSource: descriptionSource)
 
