@@ -19,7 +19,7 @@ class ShortDescriptionController: ArticleDescriptionControlling {
     let article: WMFArticle
     let articleLanguage: String
     
-    private let sectionID: Int = 0 //{{Short description}} template should always be in the first section. todo: confirm this
+    private let sectionID: Int = 0
     
     let descriptionSource: ArticleDescriptionSource
     private weak var delegate: ShortDescriptionControllerDelegate?
