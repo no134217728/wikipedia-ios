@@ -157,15 +157,29 @@
             // Handle case where response is received, but API reports error.
             NSError *error = nil;
             if (responseObject[@"error"]) {
-                NSMutableDictionary *errorDict = [responseObject[@"error"] mutableCopy];
-                errorDict[NSLocalizedDescriptionKey] = errorDict[@"info"];
-                error = [NSError errorWithDomain:@"WikiText Uploader"
-                                            code:WikiTextSectionUploaderErrorTypeServer
-                                        userInfo:errorDict];
+                
+                if ([responseObject[@"error"] isKindOfClass:[NSDictionary class]] &&
+                    [responseObject[@"error"][@"code"] isKindOfClass:[NSString class]] &&
+                    [responseObject[@"error"][@"info"] isKindOfClass:[NSString class]]) {
+                    
+                    NSString *code = responseObject[@"error"][@"code"];
+                    NSString *info = responseObject[@"error"][@"info"];
+                    
+                    error = [self abuseFilterErrorFromCode:code info:info warning:nil];
+                }
+                
+                
+                if (!error) {
+                    NSMutableDictionary *errorDict = [responseObject[@"error"] mutableCopy];
+                    errorDict[NSLocalizedDescriptionKey] = errorDict[@"info"];
+                    error = [NSError errorWithDomain:@"WikiText Uploader"
+                                                code:WikiTextSectionUploaderErrorTypeServer
+                                            userInfo:errorDict];
+                }
             }
 
-            NSDictionary *resultDict = responseObject[@"edit"];
-            NSString *result = resultDict[@"result"];
+            NSDictionary *editDict = ([responseObject[@"edit"] isKindOfClass:[NSDictionary class]]) ? responseObject[@"edit"] : nil;
+            NSString *result = editDict[@"result"];
 
             if (!error && !result) {
                 NSMutableDictionary *errorDict = [@{} mutableCopy];
@@ -176,53 +190,70 @@
             }
 
             if (!error && result && [result isEqualToString:@"Failure"]) {
-                if (responseObject[@"edit"][@"captcha"]) {
+                if ([editDict[@"captcha"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *captchaDict = editDict[@"captcha"];
                     NSMutableDictionary *errorDict = [@{} mutableCopy];
 
                     errorDict[NSLocalizedDescriptionKey] = (captchaWord && (captchaWord.length > 0)) ? WMFLocalizedStringWithDefaultValue(@"wikitext-upload-captcha-error", nil, nil, @"CAPTCHA verification error.", @"Alert text shown when section wikitext upload captcha fails")
                                                                                                                : WMFLocalizedStringWithDefaultValue(@"wikitext-upload-captcha-needed", nil, nil, @"Need CAPTCHA verification.", @"Alert text shown when section wikitext upload captcha is required");
 
                     // Make the capcha id and url available from the error.
-                    errorDict[@"captchaId"] = responseObject[@"edit"][@"captcha"][@"id"];
-                    errorDict[@"captchaUrl"] = responseObject[@"edit"][@"captcha"][@"url"];
+                    errorDict[@"captchaId"] = captchaDict[@"id"];
+                    errorDict[@"captchaUrl"] = captchaDict[@"url"];
 
                     // Set error condition so dependent ops don't even start and so the errorBlock below will fire.
                     error = [NSError errorWithDomain:@"Upload Wikitext Op" code:WikiTextSectionUploaderErrorTypeNeedsCaptcha userInfo:errorDict];
-                } else if (responseObject[@"edit"][@"code"]) {
-                    NSString *abuseFilterCode = responseObject[@"edit"][@"code"];
-                    WikiTextSectionUploaderErrorType errorType = WikiTextSectionUploaderErrorTypeUnknown;
-
-                    if ([abuseFilterCode hasPrefix:@"abusefilter-warning"]) {
-                        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterWarning;
-                    } else if ([abuseFilterCode hasPrefix:@"abusefilter-disallowed"]) {
-                        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterDisallowed;
-                    } else if ([abuseFilterCode hasPrefix:@"abusefilter"]) {
-                        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterOther;
-                    }
-
-                    switch (errorType) {
-                        case WikiTextSectionUploaderErrorTypeAbuseFilterWarning:
-                        case WikiTextSectionUploaderErrorTypeAbuseFilterDisallowed:
-                        case WikiTextSectionUploaderErrorTypeAbuseFilterOther: {
-                            NSMutableDictionary *errorDict = [@{} mutableCopy];
-
-                            errorDict[NSLocalizedDescriptionKey] = responseObject[@"edit"][@"info"];
-
-                            // Make the verbose warning available from the error.
-                            errorDict[@"warning"] = responseObject[@"edit"][@"warning"];
-                            errorDict[@"code"] = abuseFilterCode;
-
-                            // Set error condition so dependent ops don't even start and so the errorBlock below will fire.
-                            error = [NSError errorWithDomain:@"Upload Wikitext Op" code:errorType userInfo:errorDict];
-                        } break;
-
-                        default:
-                            break;
+                } else if (editDict[@"code"]) {
+                    
+                    if ([editDict[@"code"] isKindOfClass:[NSString class]] &&
+                        [editDict[@"info"] isKindOfClass:[NSString class]] &&
+                        [editDict[@"warning"] isKindOfClass:[NSString class]]) {
+                        
+                        NSString *code = editDict[@"code"];
+                        NSString *info = editDict[@"info"];
+                        NSString *warning = editDict[@"warning"];
+                        error = [self abuseFilterErrorFromCode:code info:info warning:warning];
                     }
                 }
             }
 
-        completion(resultDict, error);
+        completion(editDict, error);
     }];
 }
+
+- (nullable NSError *)abuseFilterErrorFromCode: (NSString *)code info: (NSString *)info warning: (nullable NSString *)warning  {
+    NSString *abuseFilterCode = code;
+    WikiTextSectionUploaderErrorType errorType = WikiTextSectionUploaderErrorTypeUnknown;
+
+    if ([abuseFilterCode hasPrefix:@"abusefilter-warning"]) {
+        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterWarning;
+    } else if ([abuseFilterCode hasPrefix:@"abusefilter-disallowed"]) {
+        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterDisallowed;
+    } else if ([abuseFilterCode hasPrefix:@"abusefilter"]) {
+        errorType = WikiTextSectionUploaderErrorTypeAbuseFilterOther;
+    }
+
+    switch (errorType) {
+        case WikiTextSectionUploaderErrorTypeAbuseFilterWarning:
+        case WikiTextSectionUploaderErrorTypeAbuseFilterDisallowed:
+        case WikiTextSectionUploaderErrorTypeAbuseFilterOther: {
+            NSMutableDictionary *errorDict = [@{} mutableCopy];
+
+            errorDict[NSLocalizedDescriptionKey] = info;
+
+            // Make the verbose warning available from the error.
+            errorDict[@"warning"] = warning;
+            errorDict[@"code"] = abuseFilterCode;
+
+            // Set error condition so dependent ops don't even start and so the errorBlock below will fire.
+            return [NSError errorWithDomain:@"Upload Wikitext Op" code:errorType userInfo:errorDict];
+        } break;
+
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 @end
