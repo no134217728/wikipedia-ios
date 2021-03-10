@@ -30,7 +30,8 @@
     "localName" : "Akan"
   },
   {
-    "languageCode" : "als",
+    "altSubdomainCode" : "als",
+    "languageCode" : "gsw",
     "languageName" : "Alemannisch",
     "localName" : "Alemannisch"
   },
@@ -121,7 +122,7 @@
   },
   {
     "languageCode" : "ban",
-    "languageName" : "Bali",
+    "languageName" : "Basa Bali",
     "localName" : "Balinese"
   },
   {
@@ -130,7 +131,8 @@
     "localName" : "Bavarian"
   },
   {
-    "languageCode" : "bat-smg",
+    "altSubdomainCode" : "bat-smg",
+    "languageCode" : "sgs",
     "languageName" : "žemaitėška",
     "localName" : "Samogitian"
   },
@@ -160,7 +162,8 @@
     "localName" : "Bulgarian"
   },
   {
-    "languageCode" : "bh",
+    "altSubdomainCode" : "bh",
+    "languageCode" : "bho",
     "languageName" : "भोजपुरी",
     "localName" : "Bhojpuri"
   },
@@ -220,7 +223,8 @@
     "localName" : "Catalan"
   },
   {
-    "languageCode" : "cbk-zam",
+    "altSubdomainCode" : "cbk-zam",
+    "languageCode" : "cbk",
     "languageName" : "Chavacano de Zamboanga",
     "localName" : "Chavacano"
   },
@@ -355,7 +359,8 @@
     "localName" : "Greek"
   },
   {
-    "languageCode" : "eml",
+    "altSubdomainCode" : "eml",
+    "languageCode" : "egl",
     "languageName" : "emiliàn e rumagnòl",
     "localName" : "Emiliano-Romagnolo"
   },
@@ -405,9 +410,10 @@
     "localName" : "Finnish"
   },
   {
-    "languageCode" : "fiu-vro",
-    "languageName" : "Võro",
-    "localName" : "Võro"
+    "altSubdomainCode" : "fiu-vro",
+    "languageCode" : "vro",
+    "languageName" : "võro",
+    "localName" : "võro"
   },
   {
     "languageCode" : "fj",
@@ -726,7 +732,7 @@
   },
   {
     "languageCode" : "koi",
-    "languageName" : "Перем Коми",
+    "languageName" : "перем коми",
     "localName" : "Komi-Permyak"
   },
   {
@@ -860,7 +866,8 @@
     "localName" : "Maithili"
   },
   {
-    "languageCode" : "map-bms",
+    "altSubdomainCode" : "map-bms",
+    "languageCode" : "jv-x-bms",
     "languageName" : "Basa Banyumasan",
     "localName" : "Basa Banyumasan"
   },
@@ -985,7 +992,8 @@
     "localName" : "Low German"
   },
   {
-    "languageCode" : "nds-nl",
+    "altSubdomainCode" : "nds-nl",
+    "languageCode" : "nds-NL",
     "languageName" : "Nedersaksies",
     "localName" : "Low Saxon"
   },
@@ -1015,7 +1023,8 @@
     "localName" : "Norwegian Nynorsk"
   },
   {
-    "languageCode" : "no",
+    "altSubdomainCode" : "no",
+    "languageCode" : "nb",
     "languageName" : "norsk",
     "localName" : "Norwegian"
   },
@@ -1030,7 +1039,8 @@
     "localName" : "N’Ko"
   },
   {
-    "languageCode" : "nrm",
+    "altSubdomainCode" : "nrm",
+    "languageCode" : "nrf",
     "languageName" : "Nouormand",
     "localName" : "Norman"
   },
@@ -1056,7 +1066,7 @@
   },
   {
     "languageCode" : "olo",
-    "languageName" : "Livvinkarjala",
+    "languageName" : "livvinkarjala",
     "localName" : "Livvi-Karelian"
   },
   {
@@ -1175,12 +1185,14 @@
     "localName" : "Romanian"
   },
   {
-    "languageCode" : "roa-rup",
+    "altSubdomainCode" : "roa-rup",
+    "languageCode" : "rup",
     "languageName" : "armãneashti",
     "localName" : "Aromanian"
   },
   {
-    "languageCode" : "roa-tara",
+    "altSubdomainCode" : "roa-tara",
+    "languageCode" : "nap-x-tara",
     "languageName" : "tarandíne",
     "localName" : "Tarantino"
   },
@@ -1260,7 +1272,8 @@
     "localName" : "Sinhala"
   },
   {
-    "languageCode" : "simple",
+    "altSubdomainCode" : "simple",
+    "languageCode" : "en",
     "languageName" : "Simple English",
     "localName" : "Simple English"
   },
@@ -1565,17 +1578,20 @@
     "localName" : "Chinese"
   },
   {
-    "languageCode" : "zh-classical",
+    "altSubdomainCode" : "zh-classical",
+    "languageCode" : "lzh",
     "languageName" : "文言",
     "localName" : "Classical Chinese"
   },
   {
-    "languageCode" : "zh-min-nan",
+    "altSubdomainCode" : "zh-min-nan",
+    "languageCode" : "nan",
     "languageName" : "Bân-lâm-gú",
     "localName" : "Chinese (Min Nan)"
   },
   {
-    "languageCode" : "zh-yue",
+    "altSubdomainCode" : "zh-yue",
+    "languageCode" : "yue",
     "languageName" : "粵語",
     "localName" : "Cantonese"
   },
