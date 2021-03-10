@@ -20,7 +20,7 @@ class WikipediaLanguageCommandLineUtilityAPI {
     //     ...
     // }
     func getSites() -> AnyPublisher<[Wikipedia], Error> {
-        let sitematrixURL = URL(string: "https://meta.wikimedia.org/w/api.php?action=sitematrix&format=json&formatversion=2&origin=*")!
+        let sitematrixURL = URL(string: "https://meta.wikimedia.org/w/api.php?action=sitematrix&smsiteprop=url%7Cdbname%7Ccode%7Csitename%7Clang&format=json&formatversion=2&origin=*")!
         return URLSession.shared
             .dataTaskPublisher(for: sitematrixURL)
             .tryMap { result -> [String: Any] in
@@ -38,16 +38,29 @@ class WikipediaLanguageCommandLineUtilityAPI {
             var wikipedias = sitematrix.compactMap { (kv) -> Wikipedia? in
                 guard
                     let result = kv.value as? [String: Any],
-                    let code = result["code"] as? String,
                     let name = result["name"] as? String,
                     let localname = result["localname"] as? String
                     else {
                         return nil
                 }
-                return Wikipedia(languageCode: code, languageName: name, localName: localname)
+                
+                guard
+                    let sites = result["site"] as? [[String: Any]],
+                    let wikipediaSite = sites.first(where: { (($0["url"] as? String)?.hasSuffix("wikipedia.org")) ?? false }),
+                    let languageCode = wikipediaSite["lang"] as? String,
+                    let siteUrl = wikipediaSite["url"] as? String,
+                    let siteComponents = URLComponents(string: siteUrl),
+                    let siteSubdomainCode = siteComponents.host?.components(separatedBy: ".").first,
+                    siteSubdomainCode != "m" else {
+                    return nil
+                }
+                
+                let altSubdomainCode = siteSubdomainCode != languageCode ? siteSubdomainCode : nil
+                
+                return Wikipedia(languageCode: languageCode, languageName: name, localName: localname, altSubdomainCode: altSubdomainCode)
             }
             // Add testwiki, it's not returned by the site matrix
-            wikipedias.append(Wikipedia(languageCode: "test", languageName: "Test", localName: "Test"))
+            wikipedias.append(Wikipedia(languageCode: "test", languageName: "Test", localName: "Test", altSubdomainCode: nil))
             return wikipedias
         }.eraseToAnyPublisher()
     }

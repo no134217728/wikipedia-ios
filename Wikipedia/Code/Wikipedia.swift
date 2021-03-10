@@ -4,6 +4,7 @@ struct Wikipedia: Codable {
     let languageCode: String
     let languageName: String
     let localName: String
+    let altSubdomainCode: String?
 }
 
 struct WikipediaLanguageVariant: Codable {

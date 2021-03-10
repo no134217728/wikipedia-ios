@@ -25,7 +25,9 @@ class WikipediaLanguageCommandLineUtility {
             }
         }) { (sites) in
             let sortedSites = sites.sorted { (a, b) -> Bool in
-                return a.languageCode < b.languageCode
+                let lhs = a.altSubdomainCode ?? a.languageCode
+                let rhs = b.altSubdomainCode ?? b.languageCode
+                return lhs < rhs
             }
             self.writeCodable(sortedSites, to: ["Wikipedia", "Code", "wikipedia-languages.json"])
             self.cancellable = self.writeNamespaceFiles(with: sites) {
