@@ -1,4 +1,5 @@
 @import WMF.WMFLegacyFetcher;
+@class MWKLanguageLinkController;
 
 /*
    Note about langlinks:
@@ -13,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MWKLanguageLinkFetcher : WMFLegacyFetcher
 
-- (void)fetchLanguageLinksForArticleURL:(NSURL *)url success:(void (^)(NSArray *langLinks))success failure:(void (^)(NSError *error))error;
+- (void)fetchLanguageLinksForArticleURL:(NSURL *)url languageController:(MWKLanguageLinkController *)languageController success:(void (^)(NSArray *langLinks))success failure:(void (^)(NSError *error))error;
 
 @end
 

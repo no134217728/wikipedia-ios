@@ -19,11 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// If representing a language variant, the language variant code. Otherwise nil.
 @property (readonly, copy, nonatomic, nullable) NSString *languageVariantCode;
 
+/// If wiki has a different subdomain code than it's language code, this is populated. Use it to build siteUrls.
+@property (readonly, copy, nonatomic, nullable) NSString *altSubdomainCode;
+
 - (instancetype)initWithLanguageCode:(nonnull NSString *)languageCode
                        pageTitleText:(nonnull NSString *)pageTitleText
                                 name:(nonnull NSString *)name
                        localizedName:(nonnull NSString *)localizedName
-                 languageVariantCode:(nullable NSString *)languageVariantCode NS_DESIGNATED_INITIALIZER;
+                 languageVariantCode:(nullable NSString *)languageVariantCode
+                    altSubdomainCode:(nullable NSString *)altSubdomainCode NS_DESIGNATED_INITIALIZER;
 
 ///
 /// @name Comparison

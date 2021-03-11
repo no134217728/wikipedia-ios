@@ -37,8 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fetchLanguagesWithSuccess:(dispatch_block_t)success
                           failure:(void (^__nullable)(NSError *__nonnull))failure {
     [self.fetcher fetchLanguageLinksForArticleURL:self.articleURL
+                               languageController:self.languageController
         success:^(NSArray *languageLinks) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 NSArray *adjustedLinks = [self.languageController articleLanguageLinksWithVariantsFromArticleURL:self.articleURL articleLanguageLinks:languageLinks];
                 self.availableLanguages = adjustedLinks;
                 if (success) {

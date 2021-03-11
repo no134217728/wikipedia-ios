@@ -10,6 +10,7 @@
 @property (readwrite, copy, nonatomic, nonnull) NSString *localizedName;
 @property (readwrite, copy, nonatomic, nonnull) NSString *name;
 @property (readwrite, copy, nonatomic, nullable) NSString *languageVariantCode;
+@property (readwrite, copy, nonatomic, nullable) NSString *altSubdomainCode;
 
 @end
 
@@ -18,13 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation MWKLanguageLink
 
 - (instancetype)initWithLanguageCode:(nonnull NSString *)languageCode
-                       pageTitleText:(nonnull NSString *)pageTitleText
+                    pageTitleText:(nonnull NSString *)pageTitleText
                                 name:(nonnull NSString *)name
                        localizedName:(nonnull NSString *)localizedName
-                 languageVariantCode:(nullable NSString *)languageVariantCode {
+                 languageVariantCode:(nullable NSString *)languageVariantCode
+                    altSubdomainCode:(nullable NSString *)altSubdomainCode {
     self = [super init];
     if (self) {
         self.languageCode = languageCode;
+        self.altSubdomainCode = altSubdomainCode;
         self.pageTitleText = pageTitleText;
         self.name = name;
         self.localizedName = localizedName;
@@ -66,7 +69,8 @@ WMF_SYNTHESIZE_IS_EQUAL(MWKLanguageLink, isEqualToLanguageLink:)
 }
 
 - (NSURL *)siteURL {
-    NSURL *siteURL = [NSURL wmf_URLWithDefaultSiteAndlanguage:self.languageCode];
+    NSString *subdomainLanguageCode = self.altSubdomainCode != nil ? self.altSubdomainCode : self.languageCode;
+    NSURL *siteURL = [NSURL wmf_URLWithDefaultSiteAndlanguage:subdomainLanguageCode];
     siteURL.wmf_languageVariantCode = self.languageVariantCode;
     return siteURL;
 }
@@ -82,7 +86,8 @@ WMF_SYNTHESIZE_IS_EQUAL(MWKLanguageLink, isEqualToLanguageLink:)
                                            pageTitleText:pageTitleText
                                                     name:self.name
                                            localizedName:self.localizedName
-                                     languageVariantCode:self.languageVariantCode];
+                                     languageVariantCode:self.languageVariantCode
+                                        altSubdomainCode:self.altSubdomainCode];
 }
 
 @end

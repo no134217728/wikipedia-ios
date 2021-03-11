@@ -3,10 +3,12 @@
 @import WMF.Swift;
 @import WMF.MWKLanguageLink;
 @import WMF.WMFComparison;
+@import WMF.MWKLanguageLinkController;
 
 @implementation MWKLanguageLinkFetcher
 
 - (void)fetchLanguageLinksForArticleURL:(NSURL *)articleURL
+                     languageController:(MWKLanguageLinkController *)languageController
                                 success:(void (^)(NSArray *))success
                                 failure:(void (^)(NSError *))failure {
     NSString *title = articleURL.wmf_title;
@@ -34,11 +36,22 @@
                          NSDictionary *pagesByID = result[@"query"][@"pages"];
                          NSDictionary *indexedLanguageLinks = [[pagesByID wmf_map:^id(id key, NSDictionary *result) {
                              return [result[@"langlinks"] wmf_map:^MWKLanguageLink *(NSDictionary *jsonLink) {
+                                 
+                                 NSString *altSubdomainCode = nil;
+                                 if ([jsonLink[@"lang"] isKindOfClass:[NSString class]]) {
+                                     NSString *jsonLangCode = jsonLink[@"lang"];
+                                     MWKLanguageLink *existingLanguageLink = [languageController languageForContentLanguageCode:jsonLangCode];
+                                     if (existingLanguageLink) {
+                                         altSubdomainCode = existingLanguageLink.altSubdomainCode;
+                                     }
+                                 }
+                                 
                                  return [[MWKLanguageLink alloc] initWithLanguageCode:jsonLink[@"lang"]
                                                                         pageTitleText:jsonLink[@"*"]
                                                                                  name:jsonLink[@"autonym"]
                                                                         localizedName:jsonLink[@"langname"]
-                                                                  languageVariantCode:nil];
+                                                                  languageVariantCode:nil
+                                                                     altSubdomainCode:altSubdomainCode];
                              }];
                          }] wmf_reject:^BOOL(id key, id obj) {
                              return WMF_IS_EQUAL(obj, [NSNull null]);
