@@ -43,6 +43,9 @@
                                      MWKLanguageLink *existingLanguageLink = [languageController languageForContentLanguageCode:jsonLangCode];
                                      if (existingLanguageLink) {
                                          altSubdomainCode = existingLanguageLink.altSubdomainCode;
+                                     } else {
+                                         MWKLanguageLink *altExistingLanguageLink = [languageController languageForAltSubdomainCode:jsonLangCode];
+                                         altSubdomainCode = altExistingLanguageLink.altSubdomainCode;
                                      }
                                  }
                                  

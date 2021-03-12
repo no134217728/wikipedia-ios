@@ -82,6 +82,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable MWKLanguageLink *)titleLanguageForLanguage:(MWKLanguageLink *)language {
     return [self.availableLanguages wmf_match:^BOOL(MWKLanguageLink *availableLanguage) {
+        
+        //for some reason the langlinks endpoint returns "nb" for the "no.wikipedia.org" subdomain as expected (it has a different langCode), but NOT for other alternative lang codes like "als.wikipedia.org with langCode "gsw" as sitematrix seems to suggest. Needing to work around that here.
+        if (availableLanguage.altSubdomainCode != nil &&
+            language.altSubdomainCode != nil &&
+            ![language.altSubdomainCode isEqualToString:@"no"] ) {
+            return [language.altSubdomainCode isEqualToString:availableLanguage.altSubdomainCode];
+        }
+        
         return [language.contentLanguageCode isEqualToString:availableLanguage.contentLanguageCode];
     }];
 }

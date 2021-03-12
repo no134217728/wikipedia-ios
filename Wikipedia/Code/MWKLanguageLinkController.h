@@ -88,6 +88,8 @@ typedef NS_ENUM(NSInteger, WMFPreferredLanguagesChangeType) {
 
 - (nullable MWKLanguageLink *)languageForContentLanguageCode:(NSString *)contentLanguageCode;
 
+- (nullable MWKLanguageLink *)languageForAltSubdomainCode:(NSString *)altSubdomainCode;
+
 + (void)migratePreferredLanguagesToManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end

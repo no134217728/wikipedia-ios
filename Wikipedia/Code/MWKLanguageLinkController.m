@@ -77,6 +77,12 @@ static NSString *const WMFPreviousLanguagesKey = @"WMFPreviousSelectedLanguagesK
     }];
 }
 
+- (nullable MWKLanguageLink *)languageForAltSubdomainCode:(NSString *)altSubdomainCode {
+    return [self.allLanguages wmf_match:^BOOL(MWKLanguageLink *obj) {
+        return [obj.altSubdomainCode isEqualToString:altSubdomainCode];
+    }];
+}
+
 - (nullable NSString *)preferredLanguageVariantCodeForLanguageCode:(nullable NSString *)languageCode {
     if (!languageCode) {
         return nil;
